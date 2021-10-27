@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+#section-edit ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#section-edit li {
+  margin: 0 1.5rem;
+}
+
+#section-listings {
+  min-height: 30rem;
+  max-height: 30rem;
+  overflow-y: scroll;
+}
