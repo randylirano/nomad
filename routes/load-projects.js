@@ -1,14 +1,17 @@
-/* Projects Backend
-  Written by: Kennedy C. Ezumah
-  This script handles the backedn
-/*/
+/* Backend JS 
+Written by Kennedy C. Ezumah
+Script: This is the backend script that returns a JSON file
+containing a JSON file containing a predetermined number projects
+Called by: This script is invoked by the frontend to populate the 
+project listing on the projects page
+*/
 
 let express = require("express");
 let router = express.Router();
 
 // define a projects array to store objects of projects
 let projects = [];
-
+console.log("load-projects.js module executed!");
 // display the first 3 projects
 const displayCount = 3;
 
@@ -63,10 +66,7 @@ projects.push(testProjectTwo);
 projects.push(testProjectThree);
 projects.push(testProjectFour);
 projects.push(testProjectFive);
-
-console.log(projects);
-
-//https://nomad/projects/projects
+console.log("test22");
 
 // define a projects array to store objects of projects
 router.get("/", (req, res) => {
@@ -81,13 +81,9 @@ router.get("/", (req, res) => {
     response.push(projects[i]);
   }
 
-  console.log("here");
   // send data in JSON format
   res.json(response);
-
-  console.log("done");
 });
 
-console.log("here3");
-
+console.log("last");
 module.exports = router;

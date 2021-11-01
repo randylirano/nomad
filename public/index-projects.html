@@ -51,7 +51,7 @@
           id="section-container"
         >
           <div class="row border" id="section-heading">
-            <h1>SECTION TITLE</h1>
+            <h1>Projects</h1>
             <form>
               <div class="input-group">
                 <input class="form-control" type="text" placeholder="Search" />
@@ -69,10 +69,17 @@
           <div class="row border" id="section-edit">
             <ul>
               <li>
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <button
+                  onclick="window.location.href='submit-project-form.html'"
+                  type="submit"
+                  class="btn btn-primary"
+                  id="add-project-button"
+                >
+                  Add
+                </button>
               </li>
               <li>
-                <button type="submit" class="btn btn-danger">Remove</button>
+                <button type="submit" class="btn btn-danger">Edit</button>
               </li>
             </ul>
           </div>
@@ -89,6 +96,9 @@
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"
     ></script>
+    <!-- Main client js file -->
     <script src="./js/client.js"></script>
+    <!-- Load JS File responsible for adding projects -->
+    <script src="./js/add-project-frontend.js"></script>
   </body>
 </html>
