@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 #section-edit ul {
@@ -20,6 +20,19 @@ a {
 
 #section-listings {
   min-height: 30rem;
-  max-height: 30rem;
+  max-height: 40rem;
   overflow-y: scroll;
+  justify-content: center;
+}
+
+.freelancer-info {
+  position: relative;
+  width: 50rem;
+}
+
+.tag {
+  padding: 2 px 5 px 2 px 5 px;
+  margin-left: 10 px;
+  color: white;
+  text-align: center;
 }
