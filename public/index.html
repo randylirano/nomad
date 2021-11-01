@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- meta tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A website where a project owner could connect with a freelancer and vice versa."
+    />
+
+    <title>Nomad</title>
+
+    <!-- import bootstrap 5.1.1 stylesheet -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <!-- import bootstrap 5.1.1 icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <!-- import custom stylesheet -->
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <main class="row" id="main-container">
+        <!-- sidebar -->
+        <div
+          class="
+            col-md-3 col-lg-2
+            d-md-block
+            text-white
+            bg-dark
+            sidebar
+            collapse
+          "
+          id="profile-info"
+        >
+          ME
+        </div>
+
+        <!-- main section -->
+        <div
+          class="col-md-9 ms-sm-auto col-lg-10 px-md-4"
+          id="section-container"
+        >
+          <div class="row border" id="section-heading">
+            <h1>Projects</h1>
+            <form>
+              <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search" />
+                <button type="submit" class="btn btn-dark">Search</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Add HTML tag that will be used by client JS to populate projects -->
+          <div class="row border" id="section-listings">
+            <ul id="project-list"></ul>
+          </div>
+          <!-- End of project population section -->
+
+          <div class="row border" id="section-edit">
+            <ul>
+              <li>
+                <!-- trigger post freelance modal -->
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#freelanceInfo"
+                >
+                  Post Project
+                </button>
+                <div
+                  class="modal fade"
+                  id="freelanceInfo"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div
+                    class="
+                      modal-dialog modal-dialog-centered modal-dialog-scrollable
+                    "
+                  >
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                          Post Detail
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <form
+                          action="/add-project-backend/"
+                          method="POST"
+                          class="form-example"
+                        >
+                          <div class="form-example">
+                            <label for="name">Project: </label>
+                            <input type="text" name="name" required />
+                          </div>
+                          <div class="form-example">
+                            <label for="company"> Company: </label>
+                            <input type="text" name="company" required />
+                          </div>
+                          <div class="form-example">
+                            <label for="email">Email: </label>
+                            <input type="email" name="email" required />
+                          </div>
+                          <div class="form-example">
+                            <label for="phone">Phone number: </label>
+                            <input type="text" name="phone" required />
+                          </div>
+                          <div class="form-example">
+                            <label for="skills">List required skills: </label>
+                            <input type="text" name="skills" required />
+                          </div>
+                          <div class="form-example">
+                            <input type="submit" value="Submit" />
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <button type="submit" class="btn btn-primary" id="postFreelance">Post</button> -->
+              </li>
+              <li>
+                <!-- Button trigger modal -->
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  My Projects
+                </button>
+
+                <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div
+                    class="
+                      modal-dialog modal-dialog-centered modal-dialog-scrollable
+                    "
+                  >
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                          My Freelancers Post
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">...</div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </main>
+
+      <footer class="copyright fixed-bottom">
+        <p>&copy; 2021 Kennedy Ezumah & Randy Lirano</p>
+      </footer>
+    </div>
+    <!-- import bootstrap 5.1.1 js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Main client js file -->
+    <script src="./javascripts/client.js"></script>
+    <!-- Load JS File responsible for adding projects -->
+    <script src="./javascripts/add-project-frontend.js"></script>
+  </body>
+</html>
