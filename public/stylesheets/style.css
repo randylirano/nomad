@@ -36,3 +36,7 @@ a {
   color: white;
   text-align: center;
 }
+
+ul.ba {
+  list-style-type: none;
+}
