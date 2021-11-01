@@ -57,7 +57,7 @@ router.post("/create", function(req, res) {
     links:freelancer.links
   });
 
-  res.redirect("/");
+  res.redirect("/freelanceListings.html/");
 });
 
 module.exports = router;

@@ -2,6 +2,17 @@
 
 const listingsDiv = document.querySelector("#section-listings");
 
+// let postFreelance = document.getElementById("postFreelance");
+
+// function postFreelance() {
+//   rootElement.scrollTo({
+//     top: 0,
+//     behavior: "smooth"
+//   });
+// }
+
+// postFreelance.addEventListener("click", scrollToTop);
+
 function redrawFreelancers(freelancers) {
   for (let f of freelancers) {
     // create card div
