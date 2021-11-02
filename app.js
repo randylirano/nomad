@@ -4,10 +4,13 @@ let cookieParser = require("cookie-parser");
 let logger = require("morgan");
 let bodyParser = require("body-parser");
 
+
+// freelancers router
 let indexRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
 let projectsRouter = require("./routes/load-projects");
 let addProjectRouter = require("./routes/add-project-backend");
+let freelancersRouter = require("./routes/freelancers");
 
 let app = express();
 
@@ -19,11 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/load-projects", projectsRouter);
 app.use("/add-project-backend", addProjectRouter);
-// add a route for searching user
+app.use("/freelanceListings.html", freelancersRouter);
+
 
 // POST /login gets urlencoded bodies
 app.post("/submit-form", urlencodedParser, function (req, res) {
