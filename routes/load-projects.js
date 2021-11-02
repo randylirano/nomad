@@ -11,7 +11,7 @@ let router = express.Router();
 
 // define a projects array to store objects of projects
 let projects = [];
-console.log("load-projects.js module executed!");
+console.log("load-projects.js: module loaded...");
 // display the first 3 projects
 const displayCount = 3;
 
@@ -66,7 +66,7 @@ projects.push(testProjectTwo);
 projects.push(testProjectThree);
 projects.push(testProjectFour);
 projects.push(testProjectFive);
-console.log("test22");
+console.log("load-projects.js: projects pushed...");
 
 // define a projects array to store objects of projects
 router.get("/", (req, res) => {
@@ -85,5 +85,5 @@ router.get("/", (req, res) => {
   res.json(response);
 });
 
-console.log("last");
+console.log("load-projects.js: module executed with 0 errors!");
 module.exports = router;

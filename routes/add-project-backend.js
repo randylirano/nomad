@@ -11,20 +11,23 @@ let router = express.Router();
 
 // import the database
 let db = require("../data/database.json");
+let searchQuery;
 
 // import module for writing to files
 const fs = require("fs");
 
-console.log("okooo");
+console.log("add-projects-backend.js: module loaded...");
 
 // catch and process the request
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
   // convert the string to a javascript object
-  try {
-    const searchQuery = JSON.parse(req.body);
-  } catch (error) {
-    console.log("Error parsing JSON");
-  }
+  // try {
+  searchQuery = req.body;
+  // } catch (error) {
+  //   console.log("Error parsing JSON");
+  //}
+
+  console.log("add-projects-backend.js: submission parsed...");
 
   // traverse the database and search to see if a matching company and project are are found
   for (let i = 0; i < db.length; i++) {
@@ -33,22 +36,24 @@ router.get("/", (req, res) => {
       db[i].company == searchQuery.company &&
       db[i].name == searchQuery.name
     ) {
-      console.log("Duplicate entry found in database, cannot proceed");
+      console.log(
+        "add-projects-backend.js: Duplicate entry found in database, cannot proceed"
+      );
       res.sendStatus(403);
     }
   }
 
   // otherwise, update the database with the new entry and return ok
-  fs.writeFile("../data/database.json", JSON.stringify(searchQuery), (err) => {
+  fs.writeFile("~/data/database.json", JSON.stringify(searchQuery), (err) => {
     if (err) {
       console.log(err);
     } else {
-      console.log("Database successfully updated!");
+      console.log("add-projects-backend.js: database successfully updated!");
     }
   });
 
   // return ok
-  res.sendStatus(200);
+  res.redirect("../");
 });
 
 module.exports = router;
