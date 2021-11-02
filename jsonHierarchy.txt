@@ -2,7 +2,7 @@ JSON Heirarchy
 The following provide some JSON examples showing the database hierarchy.
 To be removed upon project completion.
 
-// Credentials
+// Log-In
 {
   "credential_id": 1,
   "email": random_input@fakemail.com
@@ -15,20 +15,14 @@ To be removed upon project completion.
   "user_id": 1,
   "first_name": "Randy",
   "last_name": "Lirano",
-  "project_id": [1, 10, 22]
-  "freelancer": True,
-  "skillStack": ["Java", "Python", "Git"]
-  "links": ["testURL.com"]
+  "projects": [
+    {
+      "company_name": "Some Random Company",
+      "project_name": "Cool Project",
+      "project_desc": "",
+      "email": "cshortall0@census.gov",
+      "phone_number": "(830) 9782115"
+      "skill_stacks":
+    }
+  ]
 }
-
-//Projects
-{
-  "project_id": 1
-  "user_id": 1
-  "company": "Some Random Company",
-  "name": "Cool Project",
-  "description": "",
-  "email": "cshortall0@census.gov",
-  "phone": "(830) 9782115"
-  "skillStack":
-},
