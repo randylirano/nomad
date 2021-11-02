@@ -23,6 +23,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/load-projects", projectsRouter);
 app.use("/add-project-backend", addProjectRouter);
+// add a route for searching user
 
 // POST /login gets urlencoded bodies
 app.post("/submit-form", urlencodedParser, function (req, res) {

@@ -27,3 +27,8 @@ a {
 ul.ba {
   list-style-type: none;
 }
+
+.img-container {
+  text-align: center;
+  display: block;
+}

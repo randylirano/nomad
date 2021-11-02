@@ -11,13 +11,12 @@ let router = express.Router();
 
 // import the database
 let db = require("../data/database.json");
+let searchQuery;
 
 // import module for writing to files
 const fs = require("fs");
 
 console.log("add-projects-backend.js: module loaded...");
-
-let searchQuery;
 
 // catch and process the request
 router.post("/", (req, res) => {
