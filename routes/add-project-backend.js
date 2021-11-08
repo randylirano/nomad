@@ -10,15 +10,13 @@ let express = require("express");
 let router = express.Router();
 
 // import the database
-let db = require("../data/database.json");
+let db = require("../db/database.json");
 let searchQuery;
-
-// import module for writing to files
-const fs = require("fs");
 
 console.log("add-projects-backend.js: module loaded...");
 
 // catch and process the request
+// change to "/projects" and combine with load projects route
 router.post("/", (req, res) => {
   // convert the string to a javascript object
   // try {
