@@ -2,7 +2,112 @@
 const { MongoClient } = require("mongodb");
 
 // Mask and define the db connection string using an environment variable or default to the localhost port
-const url = process.env.MONGO_URL || "mongodb://loclhost:27017";
+const uri = process.env.MONGO_URL || "mongodb://loclhost:27017";
+
+// NOTE: DB_NAME change to nomadDB before publish
+const DB_NAME = "nomadDB";
+const USERS_COL = "Users";
+const PROJECTS_COL = "Projects";
+
+
+// function to check if provided credential already exist
+async function getCredential(inputCredential) {
+  const client = new MongoClient(uri);
+
+  try {
+    await client.connect();
+
+    const nomadDB = client.db(DB_NAME);
+    const usersCol = nomadDB.collection(USERS_COL);
+
+    // query new credential in current collection
+    const query = {
+      credential: {
+        login_email: inputCredential.login_email,
+        password: inputCredential.password,
+      },
+    };
+
+    return await usersCol.find(query).toArray();
+  } finally {
+    await client.close();
+  }
+}
+
+async function createUser(newUser) {
+  const client = new MongoClient(uri);
+
+  try {
+    await client.connect();
+
+    const nomadDB = client.db(DB_NAME);
+    const usersCol = nomadDB.collection(USERS_COL);
+
+    const newUserInfo = {
+      user_id: (await usersCol.find().count()) + 1,
+      credential: {
+        login_email: newUser.login_email,
+        password: newUser.password,
+      },
+      first_name: newUser.first_name,
+      last_name: newUser.last_name,
+    };
+
+    return await usersCol.insertOne(newUserInfo);
+  } finally {
+    await client.close();
+  }
+}
+
+async function getFreelancers() {
+  const client = new MongoClient(uri);
+
+  try {
+    await client.connect();
+
+    const nomadDB = client.db(DB_NAME);
+    const usersCol = nomadDB.collection(USERS_COL);
+    const query = [
+      {
+        "$match": {
+          "freelancer_info": {
+            "$exists": true,
+          },
+        },
+      },
+      {
+        "$project": {
+          "_id": 0,
+          "first_name": 1,
+          "last_name": 1,
+          "freelancer_info": 1,
+        },
+      },
+    ];
+
+    return await usersCol.aggregate(query).toArray();
+  } finally {
+    await client.close();
+  }
+}
+
+async function createFreelancer(newFreelancer) {
+  const client = new MongoClient(uri);
+
+  try{
+    await client.connect();
+
+    const nomadDB = client.db(DB_NAME);
+    const usersCol = nomadDB.collection(USERS_COL);
+
+    
+  } finally {
+    await client.close();
+  }
+}
+
+
+
 
 /* @authenticateUser -- This method is invoked when a user attempts to log in
    The database is queried with the request object for a document with a matching 
@@ -83,3 +188,7 @@ function myMongoDB(query) {
 }
 
 module.exports = myMongoDB();
+module.exports.getCredential = getCredential;
+module.exports.createUser = createUser;
+module.exports.getFreelancers = getFreelancers;
+module.exports.createFreelancer = createFreelancer;
