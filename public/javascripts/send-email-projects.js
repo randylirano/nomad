@@ -2,6 +2,8 @@
 
 // This should take the email address of the user currently logged in as a param
 
+// event listener
+
 const Nylas = require("Nylas");
 
 Nylas.config({
@@ -13,8 +15,8 @@ const nylas = Nylas.with(process.env.ACCESS_TOKEN);
 
 const draft = nylas.drafts.build({
   subject: "Nomad: A Candidate is Interested in Your Project!",
-  body: "Hello! X has declared interest in your project. Please reach out to them to start the conversation.",
-  to: [{ name: "Nomad Community Memnber", email: "kennedy.ezumah@Gmail.com" }],
+  body: "Hello! Someone has declared interest in your project. Please reach out to them to start the conversation.",
+  to: [{ name: "Nomad Community Member", email: X }],
 });
 
 draft.send().then((message) => {
