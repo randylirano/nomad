@@ -2,7 +2,7 @@
 const { MongoClient } = require("mongodb");
 
 // Mask and define the db connection string using an environment variable or default to the localhost port
-const uri = process.env.MONGO_URL || "mongodb://loclhost:27017";
+const uri = process.env.MONGO_URL || "mongodb://localhost:27017";
 
 // NOTE: DB_NAME change to nomadDB before publish
 const DB_NAME = "nomadDB";
