@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
 
-const nomadDB = require("../db/nomadDB.js");
+const nomadDB = require("../db/myMongoDB.js");
 
 /* GET listings */
 // get all freelancers information
