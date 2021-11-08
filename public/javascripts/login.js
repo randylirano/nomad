@@ -7,18 +7,19 @@ on the backend database
 */
 
 // use document selector to target the add button
-const addButton = document.querySelector("#add-project-form");
-// add an event listener
-addButton.addEventListener("submit", addProject);
+const formSubmit = document.querySelector("#login-form");
 
+// add an event listener
+if (formSubmit) {
+  formSubmit.addEventListener("submit", authenticateUsers);
+}
 
 // define addProject
-async function addProject() {
-
+async function authenticateUsers(evt) {
   // prevent data delivery
   evt.preventDefault();
 
-  window.alert("add-project-frontend.js: projects loaded...");
+  window.alert("login.js: module loaded...");
 
   // make an asynchronous POST request to the route for updating the database
   const form = new FormData(formSubmit);
@@ -28,7 +29,7 @@ async function addProject() {
     data[key] = val;
   }
 
-  const res = await fetch("/projects/create", {
+  const res = await fetch("/users/query", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -36,12 +37,14 @@ async function addProject() {
     body: JSON.stringify(data),
   });
 
-  if res.ok{
+  // If authentication fails, reprompt user to try again
+  if (!res.ok) {
+    alert("Incorrect email and password combination. Please retry.");
+    window.location.replace("/index.html");
+    return;
+  } else {
+    // otherwise redirect to logged-in projects page
     window.location.replace("/projects.html");
+    return;
   }
-
-
-
-
 }
-

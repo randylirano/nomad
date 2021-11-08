@@ -17,7 +17,9 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-validator": "^6.13.0",
-    "morgan": "~1.9.1"
+    "mongodb": "^4.1.4",
+    "morgan": "~1.9.1",
+    "nylas": "^5.9.0"
   },
   "devDependencies": {
     "eslint": "^8.1.0",
