@@ -2,10 +2,10 @@
 const { MongoClient } = require("mongodb");
 
 // Mask and define the db connection string using an environment variable or default to the localhost port
-const uri = process.env.MONGO_URL || "mongodb://loclhost:27017";
+const uri = process.env.MONGO_URL || "mongodb://localhost:27017";
 
 // NOTE: DB_NAME change to nomadDB before publish
-const DB_NAME = "nomadDB";
+const DB_NAME = "nomadLocalDB";
 const USERS_COL = "Users";
 const PROJECTS_COL = "Projects";
 
@@ -122,11 +122,11 @@ function myMongoDB(query) {
   //      "credential.password": authUserQuery.password,
   //
   async function getCollection(colName) {
-    const client = new MongoClient(url);
+    const client = new MongoClient(uri);
 
     await client.connect();
     console.log("myMongoDB.js: getCollection modue loaded...");
-    console.log("myMongoDB.js: db connection established...");
+    console.log("myMongoDB.js: db connection established...", client);
 
     const db = client.db("nomad");
     return [client, db.collection(colName)];
@@ -136,7 +136,7 @@ function myMongoDB(query) {
     console.log("myMongoDB.js: authenticateUsers module loaded...");
     console.log(authUserQuery);
 
-    const client = new MongoClient(url);
+    const client = new MongoClient(uri);
     await client.connect();
     const db = client.db("nomad");
     collection = db.collection("Users");
@@ -161,11 +161,15 @@ function myMongoDB(query) {
 
     let client, col;
     try {
-      [client, col] = getCollection("Projects");
+      [client, col] = await getCollection("Projects");
+      console.log("after getCollection", client);
       const query = {};
+
+      console.log("||||||||||||Client and collection initiated||||||||||||");
 
       return await col.find(query).toArray();
     } finally {
+      console.log("get projects finally", client, col);
       await client.close();
     }
   };
@@ -175,7 +179,7 @@ function myMongoDB(query) {
 
     let client, col;
     try {
-      [client, col] = getCollection("Projects");
+      [client, col] = await getCollection("Projects");
       const query = {};
 
       return await col.insertOne(query).toArray();

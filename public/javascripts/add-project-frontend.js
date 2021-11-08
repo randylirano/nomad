@@ -13,7 +13,7 @@ addButton.addEventListener("submit", addProject);
 
 
 // define addProject
-async function addProject() {
+async function addProject(evt) {
 
   // prevent data delivery
   evt.preventDefault();
@@ -36,12 +36,8 @@ async function addProject() {
     body: JSON.stringify(data),
   });
 
-  if res.ok{
+  if (res.ok){
     window.location.replace("/projects.html");
   }
-
-
-
-
 }
 
