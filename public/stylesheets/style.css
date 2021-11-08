@@ -1,0 +1,43 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+#section-edit ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#section-edit li {
+  margin: 0 1.5rem;
+}
+
+#section-listings {
+  min-height: 30rem;
+  max-height: 40rem;
+  overflow-y: scroll;
+  justify-content: center;
+}
+
+.freelancer-info {
+  position: relative;
+  width: 50rem;
+}
+
+.tag {
+  padding: 2 px 5 px 2 px 5 px;
+  margin-left: 10 px;
+  color: white;
+  text-align: center;
+  background-color: #2C365E;
+}
+
+.rounded {
+  border-radius: 0.25 rem !important;
+}
