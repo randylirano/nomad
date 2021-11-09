@@ -1,6 +1,4 @@
-
 const listingsDiv = document.querySelector("#section-listings");
-const createFreelancerForm = document.querySelector("form#newFreelancer");
 
 function redrawFreelancers(freelancers) {
   for (let f of freelancers) {
@@ -85,37 +83,40 @@ function produceLinks(links, divCardBody) {
   divCardBody.appendChild(divLinksRow);
 }
 
-createFreelancerForm.addEventListener("submit", async (evt) => {
-  // prevent default event handling
-  evt.preventDefault();
+const createFreelancerForm = document.querySelector("form#newFreelancer");
+if (createFreelancerForm !== null) {
+  createFreelancerForm.addEventListener("submit", async (evt) => {
+    // prevent default event handling
+    evt.preventDefault();
 
-  // get active user id
-  // transfer form data into data object
-  const formData = new FormData(createFreelancerForm);
-  const data = {};
-  for (let [key, val] of formData.entries()){
-    data[key] = val;
-  };
+    // get active user id
+    // transfer form data into data object
+    const formData = new FormData(createFreelancerForm);
+    const data = {};
+    for (let [key, val] of formData.entries()){
+      data[key] = val;
+    };
 
-  const fetchResponse = await fetch("/freelancers/create", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data)
+    const fetchResponse = await fetch("/freelancers/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data)
+    });
+
+    const res = await fetchResponse.json();
+
+    console.log("Got response", res);
+
+    if (res.status === "OK"){
+      window.location.replace("./freelancers.html");
+    } else {
+      console.log("Failed POST");
+    }
+
   });
-
-  const res = await fetchResponse.json();
-
-  console.log("Got response", res);
-
-  if (res.status === "OK"){
-    window.location.replace("./freelancers.html");
-  } else {
-    console.log("Failed POST");
-  }
-
-});
+}
 
 
 // retrieve freelancers from db
