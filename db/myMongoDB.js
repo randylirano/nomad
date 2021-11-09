@@ -9,7 +9,6 @@ const DB_NAME = "nomadDB";
 const USERS_COL = "Users";
 const PROJECTS_COL = "Projects";
 
-
 // function to check if provided credential already exist
 async function getCredential(inputCredential) {
   const client = new MongoClient(uri);
@@ -69,18 +68,18 @@ async function getFreelancers() {
     const usersCol = nomadDB.collection(USERS_COL);
     const query = [
       {
-        "$match": {
-          "freelancer_info": {
-            "$exists": true,
+        $match: {
+          freelancer_info: {
+            $exists: true,
           },
         },
       },
       {
-        "$project": {
-          "_id": 0,
-          "first_name": 1,
-          "last_name": 1,
-          "freelancer_info": 1,
+        $project: {
+          _id: 0,
+          first_name: 1,
+          last_name: 1,
+          freelancer_info: 1,
         },
       },
     ];
@@ -94,20 +93,15 @@ async function getFreelancers() {
 async function createFreelancer(newFreelancer) {
   const client = new MongoClient(uri);
 
-  try{
+  try {
     await client.connect();
 
     const nomadDB = client.db(DB_NAME);
     const usersCol = nomadDB.collection(USERS_COL);
-
-    
   } finally {
     await client.close();
   }
 }
-
-
-
 
 /* @authenticateUser -- This method is invoked when a user attempts to log in
    The database is queried with the request object for a document with a matching 
@@ -122,13 +116,13 @@ function myMongoDB(query) {
   //      "credential.password": authUserQuery.password,
   //
   async function getCollection(colName) {
-    const client = new MongoClient(url);
+    const client = new MongoClient(uri);
 
     await client.connect();
     console.log("myMongoDB.js: getCollection modue loaded...");
     console.log("myMongoDB.js: db connection established...");
 
-    const db = client.db("nomad");
+    const db = client.db("nomadDB");
     return [client, db.collection(colName)];
   }
 
@@ -136,7 +130,7 @@ function myMongoDB(query) {
     console.log("myMongoDB.js: authenticateUsers module loaded...");
     console.log(authUserQuery);
 
-    const client = new MongoClient(url);
+    const client = new MongoClient(uri);
     await client.connect();
     const db = client.db("nomad");
     collection = db.collection("Users");
@@ -157,14 +151,16 @@ function myMongoDB(query) {
   };
 
   myDB.getProjects = async function () {
+    const client = new MongoClient(uri);
     console.log("myMongoDB.js: getProjects module loaded...");
 
-    let client, col;
     try {
-      [client, col] = getCollection("Projects");
+      await client.connect();
+      const nomadDB = client.db("nomadDB");
+      const usersCol = nomadDB.collection("Projects");
       const query = {};
 
-      return await col.find(query).toArray();
+      return await usersCol.find(query).toArray();
     } finally {
       await client.close();
     }
@@ -172,6 +168,13 @@ function myMongoDB(query) {
 
   myDB.createProjects = async function (newProject) {
     console.log("myMongoDB.js: createProjects module loaded...");
+
+    /***
+     *
+     *
+     *
+     *
+     */
 
     let client, col;
     try {
@@ -183,7 +186,6 @@ function myMongoDB(query) {
       await client.close();
     }
   };
-
   return myDB;
 }
 

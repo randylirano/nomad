@@ -78,12 +78,50 @@
         >
           <div class="row border" id="section-heading">
             <h1>Projects</h1>
-            <form>
-              <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search" />
-                <button type="submit" class="btn btn-dark">Search</button>
+            <div class="row">
+              <div class="col">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Switch
+                  </button>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="./freelancers.html"
+                        >Freelance</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="./projects.html"
+                        >Projects</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="./signup.html">SignUp</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </form>
+              <div class="col">
+                <form action="/projects/query" method="GET">
+                  <label class="form-label"
+                    ><input
+                      type="form-control"
+                      required="true"
+                      name="search"
+                      placeholder="Search Posting"
+                  /></label>
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+              </div>
           </div>
 
           <!-- Add HTML tag that will be used by client JS to populate projects -->

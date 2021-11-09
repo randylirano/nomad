@@ -22,7 +22,7 @@
     "nylas": "^5.9.0"
   },
   "devDependencies": {
-    "eslint": "^8.1.0",
+    "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "nodemon": "^2.0.14",
     "prettier": "^2.4.1"

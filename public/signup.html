@@ -10,48 +10,40 @@
       content="A website where a project owner could connect with a freelancer and vice versa."
     />
 
-    <title>Nomad</title>
+    <title>Nomad Sign In Page</title>
 
-    <!-- import bootstrap 5.1.1 stylesheet -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-      crossorigin="anonymous"
-    />
-    <!-- import bootstrap 5.1.1 icons -->
+    <!-- Bootstrap Style Sheet -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
     />
-    <!-- import custom stylesheet -->
-    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="./stylesheets/login.css" />
+    <!-- Background Video -->
+    <video
+      id="background-video"
+      autoplay
+      loop
+      muted
+      poster="https://assets.codepen.io/6093409/river.jpg"
+    >
+      <source src="../images/video.mp4" type="video/mp4" />
+    </video>
   </head>
-
   <body>
-    <div class="container-fluid">
-      <main>
-        <div class="row">
-          <div
-            class="
-              col-md-3 col-lg-2
-              d-md-block
-              text-white
-              bg-dark
-              sidebar
-              collapse
-            "
-            id="profile-info"
-          >
-            <h1>Nomad</h1>
-          </div>
-
-          <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="row">
-              <h2>Sign-Up</h2>
-            </div>
-
-            <form action="/users/create" method="POST" id="userSignUp">
+    <div class="row">
+      <div class="container-fluid">
+        <h2 id="site-title">NOMAD</h2>
+        <h4 id="slogan">Where Opportunities Meet Global Talent</h4>
+        <div class="login">
+          <div class="account-login">
+            <h1>Create a New Account</h1>
+            <form
+              class="login-form"
+              action="/users/create"
+              method="POST"
+              id="userSignUp"
+            >
               <div>
                 <label class="form-label">
                   First Name:
@@ -87,16 +79,12 @@
                   <input type="form-control" required="true" name="password" />
                 </label>
               </div>
-
               <button type="submit" class="btn btn-primary">Sign-Up</button>
+              <p>Already Have an Account? <a href="./index.html">Log In</a></p>
             </form>
           </div>
         </div>
-      </main>
-
-      <footer class="copyright fixed-bottom">
-        <p>&copy; 2021 Kennedy Ezumah & Randy Lirano</p>
-      </footer>
+      </div>
     </div>
 
     <!-- import bootstrap 5.1.1 js -->
@@ -107,5 +95,9 @@
     ></script>
     <!-- import js for freelance client -->
     <script src="./javascripts/userSignUp.js"></script>
+    <!-- JS Files for Form Features -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- Bootstrap Link -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </body>
 </html>
