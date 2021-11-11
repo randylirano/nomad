@@ -10,7 +10,7 @@ const myDB = require("../db/myMongoDB.js");
 console.log("projects.js: module loaded...");
 
 /* GET projects listing. */
-router.get("/", function (req, res, next) {
+router.get("/", function (req, res) {
   res.send("respond with a resource");
 });
 
@@ -20,9 +20,10 @@ router.get("/load", async (req, res) => {
   const projectList = await myDB.getProjects();
 
   console.log("projects.js: projects retrieved...");
+  console.log(projectList);
 
   // send back data in JSON format to calling frontend script
-  res.json(response);
+  res.json(projectList);
 });
 
 /* POST new project to projects listing. */
