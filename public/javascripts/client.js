@@ -8,7 +8,7 @@ const projectList = document.querySelector("#project-list");
 
 async function reloadProjects() {
   // make a request from the client to the server which then proceeds to query the database for
-  const res = await fetch("/projects/load");
+  let res = await fetch("/projects/load");
 
   window.alert("client.js: module loaded...");
 
@@ -16,15 +16,16 @@ async function reloadProjects() {
     projectList.innerHTML = "Error loading data";
     return;
   }
-  //const projects = await res.json();
 
   // clean up inner HTML
   projectList.innerHTML = "";
 
   // iterate through the returned response containing the list of project objects
   // append them dynamically
-  // fix appending
-  for (let p of res) {
+  // Confirm with professor JG why this second .json() method is required to make the response iterable
+  let response = await res.json();
+
+  for (let p of response) {
     projectList.innerHTML += `<li>
                 <div class="card">
                   <div class="card-header">${p.project_name}</div>
@@ -53,3 +54,4 @@ async function reloadProjects() {
 }
 
 reloadProjects();
+
