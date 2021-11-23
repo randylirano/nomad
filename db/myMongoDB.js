@@ -1,6 +1,9 @@
 // Extract a specific element from the mongo library installed in our project
 const { MongoClient } = require("mongodb");
 
+// As I know, according to suggested by MongoDB official, you can just connect once if you have only 1 client without closing for each operation.
+// This can reduce asynchronous issues, save time and improve performance.
+
 // Mask and define the db connection string using an environment variable or default to the localhost port
 const uri = process.env.MONGO_URL || "mongodb://localhost:27017";
 
